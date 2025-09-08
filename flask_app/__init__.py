@@ -2,9 +2,9 @@ import os
 from flask import Flask
 
 
-#Use 'flask --app flask_app:instantiate_app run --debug' to run in the Terminal
-#Use 'flask --app flask_app:instantiate_app init-db' to initialise database
-#go to http://127.0.0.1:5000/hello to see output
+#'flask --app flask_app:instantiate_app run' to run in the Terminal
+#'flask --app flask_app:instantiate_app init-db' to initialise database
+#Go to http://127.0.0.1:5000/hello to see output
 def instantiate_app(test_config=None):
     app = Flask(__name__, instance_relative_config = True)
     app.config.from_mapping(
@@ -26,11 +26,14 @@ def instantiate_app(test_config=None):
         pass
 
     @app.route('/hello')
-    def hello():  #App code
+    def hello():  #main app code
         return 'Hello World!'
 
     #You can use '.' instead of 'flask_app' to import from root directory!
     from . import db_init
     db_init.init_app(app)
+
+    from . import auth
+    app.register_blueprint(auth.bp)
 
     return app

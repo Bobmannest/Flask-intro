@@ -44,7 +44,7 @@ def init_db_cmd():
     init_db()
     click.echo('Database init SUCCESS')
 
-#Converts timestamp type items into datetime(I think)
+#Converts timestamp type items into datetime(i think)
 sqlite3.register_converter(
     'timestamp', lambda v: datetime.fromisoformat(v.decode())
 )
