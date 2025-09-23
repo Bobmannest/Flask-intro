@@ -1,4 +1,4 @@
 TODO
 
-- Login view is next
-- need to fix user table not recognised(or maybe it is just code editor is lying again?)
+- Templates is next
+- FIXED) need to fix user table not recognised(or maybe it is just code editor is lying again?)
