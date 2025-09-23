@@ -60,9 +60,7 @@ def login():
         db = init_db()
         error = None
 
-        if not username:
-            error = 'Username is required.'
-        elif not password:
+        if not password:
             error = 'Password is required.'
 
         correct_user = db.execute(
@@ -85,6 +83,7 @@ def login():
 def logout():
     session.clear()
     return redirect(url_for('index'))
+
 
 def login_required(view):
     @functools.wraps(view)

@@ -4,19 +4,17 @@ from flask import Flask
 
 #'flask --app flask_app:instantiate_app run' to run in the Terminal
 #'flask --app flask_app:instantiate_app init-db' to initialise database
-#Go to http://127.0.0.1:5000/hello to see output
+#Go to http://127.0.0.1:5000/works to see output
 def instantiate_app(test_config=None):
-    app = Flask(__name__, instance_relative_config = True)
+    app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='epic',
         DATABASE=os.path.join(app.instance_path, 'flask_app.sqlite'),
     )
 
     if test_config is None:
-        #Loads instance/custom config only if not testing
-        app.config.from_pyfile('config.py', silent = True)
+        app.config.from_pyfile('config.py', silent=True)
     else:
-        #Loads test config
         app.config.from_mapping(test_config)
 
     #flask DOESN'T auto make instance folders so it must be done manually
@@ -25,9 +23,9 @@ def instantiate_app(test_config=None):
     except OSError:
         pass
 
-    @app.route('/hello')
-    def hello():  #main app code
-        return 'Hello World!'
+    @app.route('/works')
+    def hello():
+        return 'Working!'
 
     #You can use '.' instead of 'flask_app' to import from root directory!
     from . import db_init
